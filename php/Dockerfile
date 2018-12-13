@@ -46,6 +46,22 @@ RUN \
         --no-suggest --optimize-autoloader --classmap-authoritative
 ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
+# Install Magerun 2
+RUN wget https://files.magerun.net/n98-magerun2.phar \
+	&& chmod +x ./n98-magerun2.phar \
+    && mv ./n98-magerun2.phar /usr/local/bin/n98
+
+# Configuring system
+COPY bin/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
+COPY users/* /var/www/
+
+RUN chmod 777 -Rf /var/www /var/www/.* \
+	&& chown -Rf www-data:www-data /var/www /var/www/.* \
+	&& echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
+    && apk --no-cache add shadow && usermod -u 1000 www-data 
+ 
+
 # Install custom entrypoint
 COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint
 RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
@@ -53,14 +69,7 @@ CMD ["php-fpm"]
 ENTRYPOINT ["docker-custom-entrypoint"]
 
 
-# ======================================================================================================================
-FROM magento2_php as magento2_php_blackfire
-RUN \
-    curl -sS https://packages.blackfire.io/binaries/blackfire-php/1.23.1/blackfire-php-alpine_amd64-php-72.so \
-        --output $(php -r "echo ini_get('extension_dir');")/blackfire.so && \
-    docker-php-ext-enable blackfire
-# ======================================================================================================================
-
+   
 # ======================================================================================================================
 FROM magento2_php as magento2_php_xdebug
 RUN \

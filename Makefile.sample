@@ -1,4 +1,3 @@
-DOCKER_PATH := ./vendor/emakinafr/docker-magento2
 MAKEFILE_DIRECTORY := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 # Retrieve the Makefile used to manage the Docker environment

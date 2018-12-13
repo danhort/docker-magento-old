@@ -6,7 +6,6 @@ This repository allows the creation of a Docker environment that meets
 ![Architecture overview](docs/architecture.png "Architecture")
 
 ## Services
-* `blackfire`: [blackfire/blackfire:latest](https://hub.docker.com/r/blackfire/blackfire/) image (application profiling).
 * `elasticsearch`: [docker.elastic.co/elasticsearch/elasticsearch:5.2.2](https://github.com/EmakinaFR/docker-magento2/blob/master/elasticsearch/Dockerfile) custom image with some plugins (search engine).
 * `maildev`: [djfarrelly/maildev:latest](https://hub.docker.com/r/djfarrelly/maildev/) image (emails debugging).
 * `mysql`: [mysql:5.7](https://store.docker.com/images/mysql) image (Magento database).
