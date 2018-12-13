@@ -35,9 +35,9 @@ yarn install --cwd=/var/www/html
 php -f ./bin/magento deploy:mode:set developer \
 && composer dump-autoload -o \
 && clear && echo "
-===================== 🚀 Done 🚀 ===================
+===================== Done ===================
       Magento 2 Installed successfully!
-      🌎 Admin: http://localhost/admin
-      👤 User: admin
-      🔑 Password: admin123
-===================== 🚀 Done 🚀 ==================="
+      Admin: http://www.magento.localhost/admin
+      User: admin
+      Password: admin123
+===================== Done ==================="

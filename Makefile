@@ -73,8 +73,8 @@ stop: ## Stop the environment
 yarn: ## Install Composer dependencies from the "php" container
 	$(PHP_SERVICE) "yarn install --cwd=/var/www/html"
 
-magento2-install: ## Installs new Magento 2 instance [version=m2-version]
-	docker-compose exec --user www-data php install-magento2
+magento2-install: ## Installs new Magento 2 instance [version=<m2-version>]
+	docker-compose exec --user www-data php install-magento2 $(version)
 
 n98: ## n98-magerun2 commands [t="<task>"]
 	docker-compose exec --user www-data php n98-magerun2.phar $(t)
