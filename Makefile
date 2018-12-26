@@ -79,6 +79,24 @@ magento2-install: ## Installs new Magento 2 instance [version=<m2-version>]
 n98: ## n98-magerun2 commands [t="<task>"]
 	docker-compose exec --user www-data php n98-magerun2.phar $(t)
 
+##
+## ----------------------------------------------------------------------------
+##   Links
+## ----------------------------------------------------------------------------
+##
+
+Magento: ## https://www.magento.localhost 
+	@xdg-open https://www.magento.localhost
+
+Magento-admin: ## https://www.magento.localhost/admin user=admin password=admin123
+	@xdg-open https://www.magento.localhost/admin
+
+phpMyAdmin: ## http://www.magento.localhost:8080
+	@xdg-open http://www.magento.localhost:8080
+
+Maildev: ## http://www.magento.localhost:1080
+	@xdg-open http://www.magento.localhost:1080
+
 .PHONY: backup build cache composer logs logs-full nginx php ps restart restore start stats stop yarn magento2-install n98
 
 .DEFAULT_GOAL := help

@@ -16,7 +16,7 @@ In your project root dir.
 ```
 ./path/to/docker/init.sh
 ```
-This creates a Makefile, docker.env and nginx.conf in the rpoject root.  
+This creates a Makefile, docker.env and nginx.conf in the project root.  
 Update the docker.env variables COMPOSE_PROJECT_NAME and MAGENTO_ROOT.
 
 ## Usage
@@ -24,3 +24,11 @@ Update the docker.env variables COMPOSE_PROJECT_NAME and MAGENTO_ROOT.
 make
 ```
 
+## Links
+Magento: https://www.magento.localhost  
+Magento admin: https://www.magento.localhost/admin   
+> user: admin   
+> password: admin123  
+
+Maildev: http://www.magento.localhost:1080  
+phpMyAdmin: http://www.magento.localhost:8080  
