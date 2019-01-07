@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine as magento2_php
+FROM php:7.0-fpm-alpine as magento2_php
 
 # Install Magento requirements
 RUN \
@@ -30,6 +30,7 @@ RUN \
         pdo_mysql \
         soap \
         xsl \
+        mcrypt \
         zip && \
     yes "" | pecl install apcu redis && \
     docker-php-ext-enable apcu redis && \
@@ -61,12 +62,6 @@ RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
     && apk --no-cache add shadow && usermod -u 1000 www-data 
  
-
-# Install custom entrypoint
-COPY entrypoint.sh /usr/local/bin/docker-custom-entrypoint
-RUN chmod 777 /usr/local/bin/docker-custom-entrypoint
-CMD ["php-fpm"]
-ENTRYPOINT ["docker-custom-entrypoint"]
 
 
    

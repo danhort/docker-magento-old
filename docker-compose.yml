@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.5"
 
 services:
   elasticsearch:
@@ -16,7 +16,7 @@ services:
       - 1080:80
 
   mysql:
-    image: mysql:5.7
+    image: mariadb
     env_file: ${PROJECT_LOCATION}/docker.env
     ports:
       - 3306:3306
