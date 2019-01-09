@@ -45,8 +45,11 @@ user := www-data
 php: ## Open a terminal in the "php" container
 	docker-compose exec --user $(user) php sh
 
-mysql:
+mysql: ## Open a terminal in the "mysql" container
 	docker-compose exec --user root mysql sh
+
+phpmyadmin: ## Open a terminal in the "phpmyadmin" container
+	docker-compose exec --user root phpmyadmin sh
 
 ps: ## List all containers managed by the environment
 	docker-compose ps
