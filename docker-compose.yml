@@ -56,7 +56,7 @@ services:
     tty: true
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    build: ./phpmyadmin
     env_file:
       - ${PROJECT_LOCATION}/docker.env
     ports:
