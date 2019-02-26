@@ -4,14 +4,16 @@
 PHP_SERVICE := docker-compose exec php sh -c
 
 # Define a static project name that will be prepended to each service name
-export COMPOSE_PROJECT_NAME := $(shell grep COMPOSE_PROJECT_NAME ${MAKEFILE_DIRECTORY}docker.env | awk -F '=' '{print $$NF}')
+export COMPOSE_PROJECT_NAME := $(shell grep COMPOSE_PROJECT_NAME ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 # Extract environment variables needed by the environment
 export PROJECT_LOCATION := $(shell echo ${MAKEFILE_DIRECTORY})
 
-export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})/$(shell grep MAGENTO_ROOT ${MAKEFILE_DIRECTORY}docker.env | awk -F '=' '{print $$NF}')
+# Extract path to the magento directory
+export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})/$(shell grep MAGENTO_ROOT ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
-export DOCKER_PHP_IMAGE := $(shell grep DOCKER_PHP_IMAGE ${MAKEFILE_DIRECTORY}docker.env | awk -F '=' '{print $$NF}')
+# Extract php version variable
+export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 ##
 ## ----------------------------------------------------------------------------
@@ -64,10 +66,10 @@ restore: ## Restore the "mysql" volume
 	docker-compose restart mysql
 
 db-dump: ## dump the mysql database
-	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > dev/mysqldump/backup.sql.gz
+	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > $(DOCKER_PATH)/mysqldump/$(date +%Y-%m-%d-%H.%M.%S)-backup.sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
-	@zcat -f dev/mysqldump/$(file) | docker-compose  exec -u root mysql mysql -umagento -pmagento magento \
+	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose  exec -u root mysql mysql -umagento -pmagento magento \
 	&& docker-compose exec -T -u root mysql mysql -umagento -pmagento magento --execute="update core_config_data set value='https://www.magento.localhost' where path='web/unsecure/base_url';" \
     && docker-compose exec -T -u root mysql mysql -umagento -pmagento magento --execute="update core_config_data set value='https://www.magento.localhost' where path='web/secure/base_url';"
 
@@ -94,6 +96,9 @@ magento2-install: ## Installs new Magento 2 instance [version=<m2-version>]
 
 n98: ## n98-magerun2 commands [t="<task>"]
 	@docker-compose exec --user www-data php n98 $(t)
+
+magento: ## magento commands [t="<task>"]
+	@docker-compose exec --user www-data php bin/magento $(t)
 
 composer: ## composer commands [t="<task>"]
 	@docker-compose exec --user www-data php composer $(t)

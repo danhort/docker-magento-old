@@ -24,14 +24,13 @@ chmod u+w -R ./var ./vendor ./pub/static ./pub/media ./app/etc \
     --backend-frontname=admin \
 && mv ./app/etc/env.php ./app/etc/env.original.php;
 cp -rv /var/www/env.sample.php ./app/etc/env.php;
-n98 cron:install;
 php -f ./bin/magento indexer:set-mode schedule;
 cp ~/.composer/auth.json var/composer_home/auth.json \
 && php -f ./bin/magento setup:upgrade \
 && php -f ./bin/magento indexer:reindex \
 && php -f ./bin/magento cache:flush;
 mv package.json.sample package.json ; mv Gruntfile.js.sample Gruntfile.js;
-yarn install --cwd=/var/www/html
+npm install --cwd=/var/www/html
 php -f ./bin/magento deploy:mode:set developer \
 && composer dump-autoload -o \
 && clear && echo "

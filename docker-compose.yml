@@ -3,13 +3,13 @@ version: "3.5"
 services:
   elasticsearch:
     build: elasticsearch
-    env_file: ${PROJECT_LOCATION}/docker.env
+    env_file: ./docker.env
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
 
   maildev:
     image: djfarrelly/maildev
-    env_file: ${PROJECT_LOCATION}/docker.env
+    env_file: ./docker.env
     depends_on:
       - php
     ports:
@@ -17,7 +17,7 @@ services:
 
   mysql:
     image: mariadb
-    env_file: ${PROJECT_LOCATION}/docker.env
+    env_file: ./docker.env
     ports:
       - 3306:3306
     volumes:
@@ -26,31 +26,30 @@ services:
 
   nginx:
     build: nginx
-    env_file: ${PROJECT_LOCATION}/docker.env
+    env_file: ./docker.env
     ports:
       - 443:443
     volumes:
       - ${MAGENTO_ROOT}:/var/www/html:rw,delegated
       # Custom configuration
-      - ${PROJECT_LOCATION}/nginx.conf:/etc/nginx/conf.d/custom.conf:ro
+      - ./nginx.conf:/etc/nginx/conf.d/custom.conf:ro
     tty: true
 
   php:
     build:
-      context: ./php
-      target: ${DOCKER_PHP_IMAGE}
-    env_file: ${PROJECT_LOCATION}/docker.env
+      context: ./php/${PHP_VERSION}
+    env_file: ./docker.env
     volumes:
       - ${MAGENTO_ROOT}:/var/www/html:rw,delegated
       # Custom configuration
-      - ./php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
+      - ./php/${PHP_VERSION}/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
       # SSH keys
       - ~/.ssh:/root/.ssh:ro
     tty: true
 
   redis:
     image: redis:3.2-alpine
-    env_file: ${PROJECT_LOCATION}/docker.env
+    env_file: ./docker.env
     volumes:
       - redis:/data
     tty: true
@@ -58,7 +57,7 @@ services:
   phpmyadmin:
     build: ./phpmyadmin
     env_file:
-      - ${PROJECT_LOCATION}/docker.env
+      - ./docker.env
     ports:
      - 8080:80
 
