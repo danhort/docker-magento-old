@@ -10,7 +10,7 @@ export COMPOSE_PROJECT_NAME := $(shell grep COMPOSE_PROJECT_NAME ${DOCKER_PATH}/
 export PROJECT_LOCATION := $(shell echo ${MAKEFILE_DIRECTORY})
 
 # Extract path to the magento directory
-export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})/$(shell grep MAGENTO_ROOT ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
+export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})$(shell grep MAGENTO_ROOT ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 # Extract php version variable
 export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
