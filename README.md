@@ -1,6 +1,4 @@
-# Docker for Magento2
-This repository allows the creation of a Docker environment that meets
-[Magento 2](http://devdocs.magento.com/guides/v2.3/install-gde/system-requirements-tech.html) requirements.
+# Docker for Magento 1 and Magento 2
 
 ## Services
 * `elasticsearch`: [docker.elastic.co/elasticsearch/elasticsearch:5.2.2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile) custom image with some plugins (search engine).
@@ -8,6 +6,8 @@ This repository allows the creation of a Docker environment that meets
 * `mysql`: [mysql:5.7](https://store.docker.com/images/mysql) image (Magento database).
 * `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/master/nginx/Dockerfile) custom image with HTTPS (web server).
 * `php` : 
+    - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/5.6/Dockerfile) custom image with additional extensions and Composer.
+    - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/7.0/Dockerfile) custom image with additional extensions and Composer.
     - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/tree/php/7.1/Dockerfile) custom image with additional extensions and Composer.
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis) image (Magento session and caches).
 * `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile) custom image.

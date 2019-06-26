@@ -10,4 +10,3 @@ RUN \
     apk del .build-deps
 
 WORKDIR /var/www/html/
-COPY servers/magento.conf.sample /etc/nginx/conf.d/magento.conf.sample

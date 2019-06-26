@@ -15,6 +15,9 @@ export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})$(shell grep MAGENTO_R
 # Extract php version variable
 export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
+# Extract magneto version variable
+export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
+
 ##
 ## ----------------------------------------------------------------------------
 ##   Environment
