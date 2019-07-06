@@ -95,7 +95,23 @@ yarn: ## Install Composer dependencies from the "php" container
 	$(PHP_SERVICE) "yarn install --cwd=/var/www/html"
 
 magento2-install: ## Installs new Magento 2 instance [version=<m2-version>]
-	docker-compose exec --user www-data php install-magento2 $(version)
+	docker-compose exec --user www-data php composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition: $(version) .
+	docker-compose exec --user www-data php bin/magento setup:install \
+		--base-url=https://magento.localhost \
+		--db-host=mysql \
+		--db-name=magento \
+		--db-user=magento \
+		--db-password=magento \
+		--backend-frontname=admin \
+		--admin-firstname=admin \
+		--admin-lastname=admin \
+		--admin-email=admin@admin.com \
+		--admin-user=admin \
+		--admin-password=admin123 \
+		--language=en_US \
+		--currency=USD \
+		--timezone=America/Chicago \
+		--use-rewrites=1
 
 n98: ## n98-magerun2 commands [t="<task>"]
 	@docker-compose exec --user www-data php n98 $(t)

@@ -20,8 +20,11 @@ RUN apt-get update \
     && apt-get purge --auto-remove -y $requirementsToRemove
 
 ## Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer global require "hirak/prestissimo" --no-suggest --optimize-autoloader --classmap-authoritative
+ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
 # Install Magerun 2
 RUN wget https://files.magerun.net/n98-magerun2.phar \
@@ -29,8 +32,6 @@ RUN wget https://files.magerun.net/n98-magerun2.phar \
     && mv ./n98-magerun2.phar /usr/local/bin/n98
 
 # Configuring system
-COPY bin/* /usr/local/bin/
-RUN chmod +x /usr/local/bin/*
 COPY users/* /var/www/
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
