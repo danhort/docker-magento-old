@@ -39,6 +39,7 @@ RUN \
         pdo_mysql \
         soap \
         xsl \
+        sockets \
         zip && \
     yes "" | pecl install apcu redis && \
     docker-php-ext-enable apcu redis && \
