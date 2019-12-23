@@ -66,9 +66,9 @@ restore: ## Restore the "mysql" volume
 		-v $$(pwd):/backup \
 		busybox sh -c "tar xvf /backup/backup.tar var/lib/mysql/"
 	docker-compose restart mysql
-
-db-dump: ## dump the mysql database
-	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > $(DOCKER_PATH)/mysqldump/$(date +%Y-%m-%d-%H.%M.%S)-backup.sql.gz
+file := backup
+db-dump: ## dump the mysql database [file=<file name>]
+	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
 	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose  exec -u root mysql mysql -umagento -pmagento magento \
