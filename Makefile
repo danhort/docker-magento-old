@@ -71,9 +71,7 @@ db-dump: ## dump the mysql database [file=<file name>]
 	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
-	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose  exec -u root mysql mysql -umagento -pmagento magento \
-	&& docker-compose exec -T -u root mysql mysql -umagento -pmagento magento --execute="update core_config_data set value='https://www.magento.localhost' where path='web/unsecure/base_url';" \
-    && docker-compose exec -T -u root mysql mysql -umagento -pmagento magento --execute="update core_config_data set value='https://www.magento.localhost' where path='web/secure/base_url';"
+	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose exec -Tu root mysql mysql -uroot -pmagento magento
 
 
 start: ## Start the environment
