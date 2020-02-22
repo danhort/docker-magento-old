@@ -1,4 +1,4 @@
-# Docker for Magento 1 and Magento 2
+# Docker development environment for Magento 1 and Magento 2
 
 ## Services
 * `elasticsearch`: [ptanov/elasticsearch-5.2-cgroups2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile) custom image with some plugins (search engine).
@@ -13,13 +13,21 @@
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis) image (Magento session and caches).
 * `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile) custom image.
 
-## SetUp
+## Setup
 In your project root dir.
 ```
-wget https://raw.githubusercontent.com/danhort/docker-magento/master/init.sh
+wget https://raw.githubusercontent.com/danhort/docker-magento/master/bin/init.sh
 chmod +x init.sh
 ./init.sh
 ```
+
+## Install docker-magento tool (optional)
+Install docker-magento binary to access the init script from everywhere.   
+This will give you a bash tool to setup this environment using the command `docker-magento`
+```
+sudo ./bin/install.sh
+```
+
 This creates a Makefile in the project root and docker.env file in the ops directory.  
 Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
 Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
