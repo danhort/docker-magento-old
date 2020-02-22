@@ -32,8 +32,10 @@ export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env
 ##
 
 update: ## Update the ops
-	git pull origin master
+	cd $(DOCKER_PATH) && git pull origin master
 
+install: ## Install the bash tool
+	sudo  sh $(DOCKER_PATH)/bin/install.sh
 
 ##
 ## ----------------------------------------------------------------------------

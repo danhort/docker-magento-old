@@ -20,17 +20,16 @@ wget https://raw.githubusercontent.com/danhort/docker-magento/master/bin/init.sh
 chmod +x init.sh
 ./init.sh
 ```
+This creates a Makefile in the project root and docker.env file in the ops directory.  
+Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
+Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
 
 ## Install docker-magento tool (optional)
 Install docker-magento binary to access the init script from everywhere.   
 This will give you a bash tool to setup this environment using the command `docker-magento`
 ```
-sudo ./bin/install.sh
+make install
 ```
-
-This creates a Makefile in the project root and docker.env file in the ops directory.  
-Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
-Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
 
 ## Usage
 ```
