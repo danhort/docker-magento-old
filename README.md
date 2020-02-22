@@ -9,16 +9,20 @@
     - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/5.6/Dockerfile) custom image with additional extensions and Composer.
     - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/7.0/Dockerfile) custom image with additional extensions and Composer.
     - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/tree/php/7.1/Dockerfile) custom image with additional extensions and Composer.
+    - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/7.2/Dockerfile)
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis) image (Magento session and caches).
 * `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile) custom image.
 
 ## SetUp
 In your project root dir.
 ```
-./path/to/docker/init.sh
+wget https://raw.githubusercontent.com/danhort/docker-magento/master/init.sh
+chmod +x init.sh
+./init.sh
 ```
-This creates a Makefile in the project root and docker.env and nginx.conf files in the development directory.  
-Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT and if you wish to use a different version of php PHP_VERSION.
+This creates a Makefile in the project root and docker.env file in the ops directory.  
+Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
+Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
 
 ## Usage
 ```
@@ -26,10 +30,7 @@ make
 ```
 
 ## Links
-Magento: https://www.magento.localhost  
-Magento admin: https://www.magento.localhost/admin   
-> user: admin   
-> password: admin123  
-
-Maildev: http://www.magento.localhost:1080  
-phpMyAdmin: http://www.magento.localhost:8080  
+Magento: https://magento.localhost  
+Magento admin: https://magento.localhost/admin   
+Maildev: http://localhost:1080  
+phpMyAdmin: http://localhost:8080

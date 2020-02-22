@@ -1,3 +1,4 @@
+DOCKER_PATH := ./ops
 MAKEFILE_DIRECTORY := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 # Retrieve the Makefile used to manage the Docker environment

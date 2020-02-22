@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
+git clone git@github.com:danhort/docker-magento.git ops
 
 SOURCE_DIRECTORY=$(dirname "${BASH_SOURCE[0]}")
 TARGET_DIRECTORY=$PWD
 
 # Copy the Makefile sample to the project root
-cp $SOURCE_DIRECTORY/samples/Makefile.sample $TARGET_DIRECTORY/Makefile
-
-# Prepend the docker directory path to the Makefile
-sed -i  "1iDOCKER_PATH := $SOURCE_DIRECTORY" $TARGET_DIRECTORY/Makefile
+cp ops/samples/Makefile.sample ./Makefile
 
 # Copy the environment file to the ops directory
-cp $SOURCE_DIRECTORY/samples/docker.env.sample $SOURCE_DIRECTORY/docker.env
+cp ops/samples/docker.env.sample ./docker.env
