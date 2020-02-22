@@ -120,10 +120,10 @@ flush-static: ## clear the Magento static assets
 ## ----------------------------------------------------------------------------
 ##
 
-Magento: ## https://www.magento.localhost 
+Magento: ## https://magento.localhost 
 	@xdg-open https://magento.localhost
 
-Magento-admin: ## https://www.magento.localhost/admin user=admin password=admin123
+Magento-admin: ## https://magento.localhost/admin
 	@xdg-open https://magento.localhost/admin
 
 phpMyAdmin: ## http://localhost:8080
