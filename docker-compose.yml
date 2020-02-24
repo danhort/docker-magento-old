@@ -54,7 +54,7 @@ services:
     volumes:
       - ${MAGENTO_ROOT}:/var/www/html:rw,delegated
       # Custom configuration
-      - ./php/${PHP_VERSION}/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
+      - ./php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
       # SSH keys
       - ~/.ssh:/root/.ssh:ro
     tty: true
