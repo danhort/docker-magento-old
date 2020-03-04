@@ -89,8 +89,8 @@ phpmyadmin: ## Open a terminal in the "phpmyadmin" container
 ##
 
 file := backup
-db-dump: ## dump the mysql database [file=<file name>]
-	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
+db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"]
+	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
 	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose exec -Tu root mysql mysql -uroot -pmagento magento
