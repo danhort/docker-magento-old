@@ -88,12 +88,14 @@ phpmyadmin: ## Open a terminal in the "phpmyadmin" container
 ## ----------------------------------------------------------------------------
 ##
 
+# The sed command removes the definer to prevent errors
+REMOVE_DEFINER := sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'
 file := backup
-db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"]
-	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
+db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"] 
+	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | $(REMOVE_DEFINER) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
-	@zcat -f $(DOCKER_PATH)/mysqldump/$(file) | docker-compose exec -Tu root mysql mysql -uroot -pmagento magento
+	zcat -f $(DOCKER_PATH)/mysqldump/$(file) | $(REMOVE_DEFINER) | docker-compose exec -T -u root mysql mysql -uroot -pmagento magento
 
 ##
 ## ----------------------------------------------------------------------------
