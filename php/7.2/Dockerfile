@@ -72,9 +72,6 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug \
 # Set up FE deps
 RUN npm install
 
-# Configuring system
-COPY users/* /var/www/
-
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
     && usermod -u 1000 www-data 
