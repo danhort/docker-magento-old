@@ -129,6 +129,9 @@ clear-assets: ## clear the Magento static assets
 flush-redis: ## Flush cache stored in Redis
 	docker-compose exec redis sh -c "redis-cli flushall"
 
+cache-watch: ## Run mage2tv cache-clean 
+	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html -w
+
 ##
 ## ----------------------------------------------------------------------------
 ##   Links
