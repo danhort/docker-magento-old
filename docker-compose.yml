@@ -30,7 +30,7 @@ services:
     image: mariadb
     env_file: ./docker.env
     ports:
-      - 3306:3306
+      - 3307:3307
     volumes:
       - mysql:/var/lib/mysql
       - ./mysqldump:/mysqldump
@@ -57,7 +57,11 @@ services:
       - ./php/${PHP_VERSION}/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
       # SSH keys
       - ~/.ssh:/root/.ssh:ro
+      # Mage cache clean
+      - ./php/${PHP_VERSION}/mage-cache-clean:/var/www/html/vendor/mage-cache-clean
     tty: true
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal remote_port=9001 remote_enable=1
 
   redis:
     image: redis:3.2-alpine

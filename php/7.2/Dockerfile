@@ -18,6 +18,8 @@ RUN \
         libxslt-dev \
         libwebp-dev \
         make \
+	nodejs \
+	npm \
         openssh-client \
         patch \
         perl \
@@ -60,9 +62,19 @@ RUN wget https://files.magerun.net/n98-magerun2.phar \
 	&& chmod +x ./n98-magerun2.phar \
     && mv ./n98-magerun2.phar /usr/local/bin/n98
 
+# Install & Setup Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_autostart=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+# Set up FE deps
+RUN npm install
+
 # Configuring system
 COPY users/* /var/www/
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
     && usermod -u 1000 www-data 
+
