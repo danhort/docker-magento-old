@@ -1,24 +1,45 @@
-# Docker for Magento 1 and Magento 2
+ ```
+    _____             _               __  __                        _        
+   |  __ \           | |             |  \/  |                      | |       
+   | |  | | ___   ___| | _____ _ __  | \  / | __ _  __ _  ___ _ __ | |_ ___  
+   | |  | |/ _ \ / __| |/ / _ \ '__| | |\/| |/ _` |/ _` |/ _ \ '_ \| __/ _ \ 
+   | |__| | (_) | (__|   <  __/ |    | |  | | (_| | (_| |  __/ | | | || (_) |
+   |_____/ \___/ \___|_|\_\___|_|    |_|  |_|\__,_|\__, |\___|_| |_|\__\___/ 
+                                                    __/ |                    
+                                                   |___/                   
+```
+# Docker development environment for Magento 1 and Magento 2
 
 ## Services
-* `elasticsearch`: [ptanov/elasticsearch-5.2-cgroups2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile) custom image with some plugins (search engine).
-* `maildev`: [djfarrelly/maildev:latest](https://hub.docker.com/r/djfarrelly/maildev/) image (emails debugging).
-* `mysql`: [mysql:5.7](https://store.docker.com/images/mysql) image (Magento database).
-* `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/master/nginx/Dockerfile) custom image with HTTPS (web server).
+* `elasticsearch`: [ptanov/elasticsearch-5.2-cgroups2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile)
+* `maildev`: [djfarrelly/maildev:latest](https://hub.docker.com/r/djfarrelly/maildev/)
+* `mysql`: [mysql:5.7](https://store.docker.com/images/mysql)
+* `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/master/nginx/Dockerfile)
 * `php` : 
-    - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/5.6/Dockerfile) custom image with additional extensions and Composer.
-    - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/tree/php/7.0/Dockerfile) custom image with additional extensions and Composer.
-    - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/tree/php/7.1/Dockerfile) custom image with additional extensions and Composer.
-* `redis`: [redis:4-alpine](https://store.docker.com/images/redis) image (Magento session and caches).
-* `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile) custom image.
+    - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/5.6/Dockerfile)
+    - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.0/Dockerfile)
+    - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/blob/master/php/7.1/Dockerfile)
+    - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.2/Dockerfile)
+* `redis`: [redis:4-alpine](https://store.docker.com/images/redis)
+* `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile)
 
-## SetUp
+## Setup
 In your project root dir.
 ```
-./path/to/docker/init.sh
+wget https://raw.githubusercontent.com/danhort/docker-magento/master/bin/init.sh
+chmod +x init.sh
+./init.sh
 ```
-This creates a Makefile in the project root and docker.env and nginx.conf files in the development directory.  
-Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT and if you wish to use a different version of php PHP_VERSION.
+This creates a Makefile in the project root and docker.env file in the ops directory.  
+Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
+Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
+
+## Install docker-magento tool (optional)
+Install docker-magento binary to access the init script from everywhere.   
+This will give you a bash tool to setup this environment using the command `docker-magento`
+```
+make install
+```
 
 ## Usage
 ```
@@ -26,10 +47,18 @@ make
 ```
 
 ## Links
-Magento: https://www.magento.localhost  
-Magento admin: https://www.magento.localhost/admin   
-> user: admin   
-> password: admin123  
+Magento: https://magento.localhost  
+Magento admin: https://magento.localhost/admin   
+Maildev: http://localhost:1080  
+phpMyAdmin: http://localhost:8080
 
-Maildev: http://www.magento.localhost:1080  
-phpMyAdmin: http://www.magento.localhost:8080  
+## Database credentials
+host: mysql   
+name: magento   
+user: magento   
+password: magento   
+
+There is a Magento 2 env.php sample file in ops/samples
+
+## Comments
+*This environment setup has only been tested on linux.*
