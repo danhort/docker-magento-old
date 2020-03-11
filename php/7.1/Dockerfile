@@ -27,9 +27,10 @@ RUN \
 ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
 # Install Magerun 2
-RUN wget https://files.magerun.net/n98-magerun2.phar \
-	&& chmod +x ./n98-magerun2.phar \
-    && mv ./n98-magerun2.phar /usr/local/bin/n98
+# Magerun >= v2.4 does not support PHP <= 7.1
+RUN wget https://files.magerun.net/n98-magerun2-3.2.0.phar \
+	&& chmod +x ./n98-magerun2-3.2.0.phar \
+    && mv ./n98-magerun2-3.2.0.phar /usr/local/bin/n98
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
