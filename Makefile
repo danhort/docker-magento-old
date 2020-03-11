@@ -129,9 +129,6 @@ clear-assets: ## clear the Magento static assets
 flush-redis: ## Flush cache stored in Redis
 	docker-compose exec redis sh -c "redis-cli flushall"
 
-cache-watch: ## Run mage2tv cache-clean 
-	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html -w
-
 admin: ## Create dummy admin account
 	@docker-compose exec --user www-data php n98 admin:user:create \
 		--admin-user=admin \
@@ -139,6 +136,8 @@ admin: ## Create dummy admin account
 		--admin-email=a@a.com \
 		--admin-firstname=a \
 		--admin-lastname=a
+cache-watch: ## Run mage2tv cache-clean [t="<task>"]
+	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html $(t)
 
 ##
 ## ----------------------------------------------------------------------------
