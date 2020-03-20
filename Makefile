@@ -79,6 +79,9 @@ php: ## Open a terminal in the "php" container
 mysql: ## Open a terminal in the "mysql" container
 	docker-compose exec --user root mysql sh
 
+db: ## Open mysql & login to DB
+	docker-compose exec --user root mysql sh -c "mysql -u magento -pmagento magento"
+
 phpmyadmin: ## Open a terminal in the "phpmyadmin" container
 	docker-compose exec --user root phpmyadmin sh
 
@@ -131,7 +134,7 @@ flush-redis: ## Flush cache stored in Redis
 
 admin: ## Create dummy admin account
 	@docker-compose exec --user www-data php n98 admin:user:create \
-		--admin-user=admin \
+		--admin-user=a \
 		--admin-password=admin123 \
 		--admin-email=a@a.com \
 		--admin-firstname=a \
