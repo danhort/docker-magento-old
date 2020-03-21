@@ -9,6 +9,6 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo 'Installing Docker Magento';
-cp $SCRIPT_DIR/docker-magento /usr/bin
+cp $SCRIPT_DIR/docker-magento.sh /usr/bin/docker-magento
 echo 'Installation complete. Run Docker Magento with the command "docker-magento".'
 exit 0;
