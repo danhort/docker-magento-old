@@ -33,7 +33,7 @@ update: ## Update the ops
 	cd $(DOCKER_PATH) && git pull origin master
 
 install: ## Install the bash tool
-	sudo  sh $(DOCKER_PATH)/bin/install.sh
+	sudo  bash $(DOCKER_PATH)/bin/install.sh
 
 ##
 ## ----------------------------------------------------------------------------
