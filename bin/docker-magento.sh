@@ -3,12 +3,13 @@
 usage () {
     echo "
 Usage:  docker-magento [options...]
+Downloads the Docker Magento development environment from https://github.com/danhort/docker-magento.
  -h, --help          This help text
  -u, --update        Updates the docker-magento install script
 "
 }
 
-install () {
+init () {
     git clone git@github.com:danhort/docker-magento.git ops
 
     # Copy the Makefile sample to the project root
@@ -37,16 +38,18 @@ update () {
     exit 0;
 }
 
-while test $# -gt 0; do
-  case "$1" in
-    -h|--help) usage
-        break
-        ;;
-    -u|--update) update
-        break
-        ;;
-    \?) install
-        break
-        ;;
-  esac
+while [ ! $# -eq 0 ]
+do
+	case "$1" in
+        -h|--help)
+            usage
+            exit
+            ;;
+        -u|--update) update
+            exit
+            ;;
+    esac
+    shift
 done
+
+init

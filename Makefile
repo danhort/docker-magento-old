@@ -14,14 +14,14 @@ export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -
 export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 
-##    _____             _               __  __                        _        
-##   |  __ \           | |             |  \/  |                      | |       
-##   | |  | | ___   ___| | _____ _ __  | \  / | __ _  __ _  ___ _ __ | |_ ___  
-##   | |  | |/ _ \ / __| |/ / _ \ '__| | |\/| |/ _` |/ _` |/ _ \ '_ \| __/ _ \ 
+##    _____             _               __  __                        _
+##   |  __ \           | |             |  \/  |                      | |
+##   | |  | | ___   ___| | _____ _ __  | \  / | __ _  __ _  ___ _ __ | |_ ___
+##   | |  | |/ _ \ / __| |/ / _ \ '__| | |\/| |/ _` |/ _` |/ _ \ '_ \| __/ _ \
 ##   | |__| | (_) | (__|   <  __/ |    | |  | | (_| | (_| |  __/ | | | || (_) |
-##   |_____/ \___/ \___|_|\_\___|_|    |_|  |_|\__,_|\__, |\___|_| |_|\__\___/ 
-##                                                    __/ |                    
-##                                                   |___/                     
+##   |_____/ \___/ \___|_|\_\___|_|    |_|  |_|\__,_|\__, |\___|_| |_|\__\___/
+##                                                    __/ |
+##                                                   |___/
 
 ##
 ## ----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ phpmyadmin: ## Open a terminal in the "phpmyadmin" container
 # The sed command removes the definer to prevent errors
 REMOVE_DEFINER := sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/'
 file := backup
-db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"] 
+db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"]
 	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | $(REMOVE_DEFINER) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
@@ -106,7 +106,7 @@ db-import: ## import to mysql database [file=<file name>]
 edition := project-community-edition
 magento2-install: ## Installs new Magento 2 instance [edition=<magento edition>] [version=<m2-version>]
 	docker-compose exec --user www-data php composer create-project --repository-url=https://repo.magento.com/ magento/$(edition): $(version) .
-	
+
 n98: ## n98-magerun2 commands [t="<task>"]
 	@docker-compose exec --user www-data php n98 $(t)
 
@@ -138,7 +138,7 @@ cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 ## ----------------------------------------------------------------------------
 ##
 
-Magento: ## https://magento.localhost 
+Magento: ## https://magento.localhost
 	@xdg-open https://magento.localhost
 
 Magento-admin: ## https://magento.localhost/admin
