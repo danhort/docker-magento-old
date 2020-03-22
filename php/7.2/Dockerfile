@@ -40,9 +40,10 @@ RUN \
         soap \
         xsl \
         sockets \
+        mysqli \
         zip && \
     yes "" | pecl install apcu redis && \
-    docker-php-ext-enable apcu redis && \
+    docker-php-ext-enable apcu redis mysqli && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     perl -pi -e "s|;pm.status_path = /status|pm.status_path = /php_fpm_status|g" /usr/local/etc/php-fpm.d/www.conf && \
     yarn global add grunt-cli && \
@@ -62,7 +63,7 @@ RUN wget https://files.magerun.net/n98-magerun2.phar \
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
-    && usermod -u 1000 www-data 
+    && usermod -u 1000 www-data
 
 # fix work iconv library with alphine
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv

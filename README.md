@@ -30,8 +30,9 @@ wget https://raw.githubusercontent.com/danhort/docker-magento/master/bin/init.sh
 chmod +x init.sh
 ./init.sh
 ```
-This creates a Makefile in the project root and docker.env file in the ops directory.  
-Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.  
+This creates a Makefile in the project root, a docker.env file and a custom-nginx.conf file in the ops directory.  
+Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.   
+Update the custom-nginx.conf file with whatever php entrypoint you need. (e.g. blog/)   
 Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
 
 ## Install docker-magento tool (optional)

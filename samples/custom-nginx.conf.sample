@@ -1,0 +1,5 @@
+# Custom nginx entrypoints
+#location /<entrypoint> {
+#    index index.php index.php;
+#    try_files $uri $uri/ /<entrypoint>/index.php?$args;
+#}

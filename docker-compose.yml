@@ -44,7 +44,8 @@ services:
     volumes:
       - ${MAGENTO_ROOT}:/var/www/html:rw,delegated
       # Custom configuration
-      - ./nginx/servers/nginx${MAGENTO_VERSION}.conf:/etc/nginx/conf.d/custom.conf:ro
+      - ./nginx/servers/nginx${MAGENTO_VERSION}.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./custom-nginx.conf:/etc/nginx/custom/custom.conf:ro
     tty: true
 
   php:
