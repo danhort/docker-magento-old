@@ -32,7 +32,7 @@ chmod +x init.sh
 ```
 This creates a Makefile in the project root, a docker.env file and a custom-nginx.conf file in the ops directory.  
 Update the docker.env variables COMPOSE_PROJECT_NAME, MAGENTO_ROOT, PHP_VERSION, MAGENTO_VERSION.   
-Update the custom-nginx.conf file with whatever php entrypoint you need. (e.g. blog/)   
+Update the ops/custom-nginx.conf file with location directives you need. (e.g. blog/)   
 Create the source folder (MAGENTO_ROOT) in the project root where your code will live.
 
 ## Install docker-magento tool (optional)
