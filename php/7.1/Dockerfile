@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-jessie
+FROM php:7.1-fpm-jessie as magento_php
 
 RUN apt-get update \
     && systemRequirements="wget nano nodejs-legacy" \
@@ -34,6 +34,12 @@ RUN wget https://files.magerun.net/n98-magerun2-3.2.0.phar \
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
-    && usermod -u 1000 www-data 
+    && usermod -u 1000 www-data
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+FROM magento_php as magento_php_xdebug
+
+# Install xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug

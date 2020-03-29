@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.2-fpm-alpine as magento_php
 
 # Install Magento requirements
 RUN \
@@ -68,3 +68,9 @@ RUN chmod 777 -Rf /var/www /var/www/.* \
 # fix work iconv library with alphine
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
+FROM magento_php as magento_php_xdebug
+
+# Install xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug

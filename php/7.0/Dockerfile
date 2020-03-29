@@ -1,4 +1,4 @@
-FROM php:7.0-fpm-alpine
+FROM php:7.0-fpm-alpine as magento_php
 
 # Install Magento requirements
 RUN \
@@ -56,5 +56,11 @@ RUN wget https://files.magerun.net/n98-magerun2-3.2.0.phar \
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
 	&& echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
-    && apk --no-cache add shadow && usermod -u 1000 www-data 
- 
+    && apk --no-cache add shadow && usermod -u 1000 www-data
+
+FROM magento_php as magento_php_xdebug
+
+# Install xdebug
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
+    yes "" | pecl install xdebug-2.6.0 && \
+    docker-php-ext-enable xdebug

@@ -61,5 +61,10 @@ password: magento
 
 There is a Magento 2 env.php sample file in ops/samples
 
+## Xdebug
+To enable Xdebug you must change the `DOCKER_PHP_IMAGE` variable in ops/docker.env from `magento_php` to `magento_php_xdebug`.   
+The port used for Xdebug is 9001.   
+The following is a configuration sample for vscode: ops/samples/launch.json.sample
+
 ## Comments
 *This environment setup has only been tested on linux.*

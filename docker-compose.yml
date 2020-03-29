@@ -51,11 +51,14 @@ services:
   php:
     build:
       context: ./php/${PHP_VERSION}
+      target: ${DOCKER_PHP_IMAGE}
     env_file: ./docker.env
     volumes:
       - ${MAGENTO_ROOT}:/var/www/html:rw,delegated
       # Custom configuration
       - ./php/conf.d/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
+      # Xdebug configuration
+      - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
       # SSH keys
       - ~/.ssh:/root/.ssh:ro
     tty: true

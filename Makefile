@@ -10,6 +10,9 @@ export MAGENTO_ROOT := $(shell echo ${MAKEFILE_DIRECTORY})$(shell grep MAGENTO_R
 # Extract php version variable
 export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
+# Extract docker image
+export DOCKER_PHP_IMAGE := $(shell grep DOCKER_PHP_IMAGE ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
+
 # Extract magneto version variable
 export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
@@ -131,6 +134,8 @@ flush-redis: ## Flush cache stored in Redis
 
 cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html $(t)
+
+
 
 ##
 ## ----------------------------------------------------------------------------
