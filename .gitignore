@@ -1,4 +1,3 @@
 mysqldump/*
 !mysqldump/.keep
-custom-nginx.conf
 docker.env
