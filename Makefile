@@ -98,7 +98,7 @@ db-dump: ## dump the mysql database [file=<file name>], dump specific tables [ta
 	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | $(REMOVE_DEFINER) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
 db-import: ## import to mysql database [file=<file name>]
-	zcat -f $(DOCKER_PATH)/mysqldump/$(file) | $(REMOVE_DEFINER) | docker-compose exec -T -u root mysql mysql -uroot -pmagento magento
+	zcat -f $(DOCKER_PATH)/mysqldump/$(file) | $(REMOVE_DEFINER) | docker-compose exec -T -u root mysql mysql -u root -pmagento magento
 
 ##
 ## ----------------------------------------------------------------------------
