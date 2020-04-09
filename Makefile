@@ -142,6 +142,9 @@ admin: ## Create dummy admin account
 cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html $(t)
 
+grunt: ## Run M2 grunt tasks [t="<task>"]
+	docker-compose exec php npx grunt $(t)
+
 ##
 ## ----------------------------------------------------------------------------
 ##   Links
