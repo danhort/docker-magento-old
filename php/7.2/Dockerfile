@@ -72,9 +72,6 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug \
     && echo "xdebug.profile_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Set up FE deps
-RUN npm install
-
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
     && usermod -u 1000 www-data 
