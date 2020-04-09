@@ -59,7 +59,7 @@ services:
       - ~/.ssh:/root/.ssh:ro
     tty: true
     environment:
-      XDEBUG_CONFIG: idekey=VSCODE remote_port=9001 remote_host=172.18.0.1
+      XDEBUG_CONFIG: idekey=vscode remote_port=9001 remote_host=172.17.0.1
 
   redis:
     image: redis:3.2-alpine
