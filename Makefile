@@ -128,11 +128,11 @@ yarn: ## yarn commands [t="<task>"]
 	@docker-compose exec --user www-data php yarn $(t)
 
 clear-assets: ## clear the Magento static assets
-	@rm -rf src/pub/static/* \
-	& rm -rf src/var/cache/* \
-	& rm -rf src/var/composer_home/* \
-	& rm -rf src/var/page_cache/* \
-	& rm -rf src/var/view_preprocessed/*
+	@rm -rf $(MAGENTO_ROOT)/pub/static/* \
+	& rm -rf $(MAGENTO_ROOT)/var/cache/* \
+	& rm -rf $(MAGENTO_ROOT)/var/composer_home/* \
+	& rm -rf $(MAGENTO_ROOT)/var/page_cache/* \
+	& rm -rf $(MAGENTO_ROOT)/var/view_preprocessed/*
 
 flush-redis: ## Flush cache stored in Redis
 	docker-compose exec redis sh -c "redis-cli flushall"
