@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - Swapped clear-assets src path with env path
+### Changed
+- Removed www from env sample default urls
 
 ## [0.2.0] - 2020-05-06
 ### Added
