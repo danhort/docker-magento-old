@@ -124,8 +124,11 @@ magento: ## magento commands [t="<task>"]
 composer: ## composer commands [t="<task>"]
 	@docker-compose exec --user www-data php composer $(t)
 
-yarn: ## yarn commands [t="<task>"]
-	@docker-compose exec --user www-data php yarn $(t)
+npm: ## npm commands [t="<task>"]
+	@docker-compose exec --user www-data php npm $(t)
+
+grunt: ## Run M2 grunt tasks [t="<task>"]
+	@docker-compose exec php npx grunt $(t)
 
 clear-assets: ## clear the Magento static assets
 	@rm -rf $(MAGENTO_ROOT)/pub/static/* \

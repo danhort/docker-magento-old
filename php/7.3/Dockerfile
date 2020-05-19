@@ -24,7 +24,7 @@ RUN \
         perl \
         shadow \
         ssmtp \
-        yarn && \
+        npm && \
     apk add --no-cache --virtual .build-deps $PHPIZE_DEPS && \
     docker-php-ext-configure bcmath && \
     docker-php-ext-configure gd \
@@ -47,7 +47,6 @@ RUN \
     docker-php-ext-enable apcu redis mysqli && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     perl -pi -e "s|;pm.status_path = /status|pm.status_path = /php_fpm_status|g" /usr/local/etc/php-fpm.d/www.conf && \
-    yarn global add grunt-cli && \
     apk del .build-deps
 
 ## Install Composer globally

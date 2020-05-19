@@ -15,8 +15,8 @@ RUN \
         openssh-client \
         patch \
         perl \
-        ssmtp \
-        yarn && \
+        nodejs \
+        ssmtp && \
     apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
         icu-dev && \
@@ -37,7 +37,6 @@ RUN \
     docker-php-ext-enable apcu redis && \
     perl -pi -e "s/mailhub=mail/mailhub=maildev/" /etc/ssmtp/ssmtp.conf && \
     perl -pi -e "s|;pm.status_path = /status|pm.status_path = /php_fpm_status|g" /usr/local/etc/php-fpm.d/www.conf && \
-    yarn global add grunt-cli && \
     apk del .build-deps
 
 ## Install Composer globally
