@@ -3,10 +3,10 @@
 while [ ! $# -eq 0 ]
 do
 	case "$1" in
-        -p|--project) 
+        -p|--project)
             PROJECT_NAME=$2
             ;;
-        -d|--docker-path) 
+        -d|--docker-path)
             DOCKER_PATH=$2
             ;;
     esac
@@ -44,4 +44,25 @@ update () {
     exit 0;
 }
 
+# this method add missing config files
+updateConfigs () {
+    OPS_FILES=('custom-nginx.conf' 'docker.env')
+    ROOT_FILES=('.editorconfig')
+
+    for file in $OPS_FILES
+    do
+        if [ ! -f "ops/$file" ]; then
+            cp "ops/samples/$file.sample" "ops/$file"
+        fi
+    done
+
+    for file in $ROOT_FILES
+    do
+        if [ ! -f $file ]; then
+            cp "ops/samples/$file.sample" "$file"
+        fi
+    done
+}
+
 update
+updateConfigs
