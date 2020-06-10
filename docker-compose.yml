@@ -70,6 +70,13 @@ services:
       - redis:/data
     tty: true
 
+  varnish:
+    image: varnish
+    env_file: ./docker.env
+    volumes:
+      - varnish:/data
+    tty: true
+
   phpmyadmin:
     build: ./phpmyadmin
     env_file:
@@ -81,3 +88,4 @@ volumes:
   elasticsearch: {}
   mysql: {}
   redis: {}
+  varnish: {}
