@@ -22,6 +22,7 @@
     - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.2/Dockerfile)
     - [php:7.3-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.3/Dockerfile)
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis)
+* `varnish`: [varnish](https://hub.docker.com/_/varnish
 * `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile)
 
 ## Setup
