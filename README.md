@@ -11,7 +11,7 @@
 # Docker development environment for Magento 1 and Magento 2
 
 ## Services
-* `elasticsearch`: [ptanov/elasticsearch-5.2-cgroups2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile)
+* `elasticsearch`: [docker.elastic.co/elasticsearch/elasticsearch:7.6.2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile)
 * `maildev`: [djfarrelly/maildev:latest](https://hub.docker.com/r/djfarrelly/maildev/)
 * `mysql`: [mysql:5.7](https://store.docker.com/images/mysql)
 * `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/master/nginx/Dockerfile)
@@ -21,6 +21,7 @@
     - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/blob/master/php/7.1/Dockerfile)
     - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.2/Dockerfile)
     - [php:7.3-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.3/Dockerfile)
+    - [adhocore/phpfpm:7.4](https://github.com/danhort/docker-magento2/blob/master/php/7.3=4/Dockerfile)
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis)
 * `varnish`: [varnish](https://hub.docker.com/_/varnish
 * `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile)
@@ -50,9 +51,9 @@ make
 ```
 
 ## Links
-Magento: https://magento.localhost  
-Magento admin: https://magento.localhost/admin   
-Maildev: http://localhost:1080  
+magento: https://magento.localhost  
+magento admin: https://magento.localhost/admin   
+maildev: http://localhost:1080  
 phpMyAdmin: http://localhost:8080
 
 ## Database credentials

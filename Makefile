@@ -151,16 +151,16 @@ cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 ## ----------------------------------------------------------------------------
 ##
 
-Magento: ## https://magento.localhost
+magento: ## https://magento.localhost
 	@xdg-open https://magento.localhost
 
-Magento-admin: ## https://magento.localhost/admin
+magento-admin: ## https://magento.localhost/admin
 	@xdg-open https://magento.localhost/admin
 
 phpMyAdmin: ## http://localhost:8080
 	@xdg-open http://localhost:8080
 
-Maildev: ## http://localhost:1080
+maildev: ## http://localhost:1080
 	@xdg-open http://localhost:1080
 
 .DEFAULT_GOAL := help

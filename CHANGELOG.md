@@ -5,10 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.5.0] - 2020-10-30
 ### Added
 - Varnish
 - Ioncube to PHP 7.3 container
-- Add base_static_url and base_media_url to env.php sample
+- Add base_static_url and base_media_url and elastic host to env.php sample
+- Add fastcgi_buffer_size to nginx
+- Added PHP 7.4
+### CHanged
+- Updated elasticsearch to 7.6
+### Removed
+- Remove unused bin script
 
 ## [0.4.0] - 2020-05-19
 ### Added
@@ -37,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG file to hopefully serve as an evolving example of a
   standardized open source project CHANGELOG.
 
-[Unreleased]: https://github.com/danhort/docker-magento/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/danhort/docker-magento/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/danhort/docker-magento/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/danhort/docker-magento/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/danhort/docker-magento/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/danhort/docker-magento/compare/0.1.0...0.2.0

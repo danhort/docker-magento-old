@@ -1,5 +1,6 @@
-FROM ptanov/elasticsearch-5.2-cgroups2
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 
-RUN cd /usr/share/elasticsearch \
-    && bin/elasticsearch-plugin install analysis-phonetic \
-    && bin/elasticsearch-plugin install analysis-icu
+# Install ElasticSuite requirements (https://github.com/Smile-SA/elasticsuite/wiki/ModuleInstall)
+RUN \
+    elasticsearch-plugin install analysis-icu && \
+    elasticsearch-plugin install analysis-phonetic

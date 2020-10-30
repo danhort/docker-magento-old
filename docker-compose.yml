@@ -30,7 +30,7 @@ services:
     image: mariadb
     env_file: ./docker.env
     ports:
-      - ${MYSQL_PORT}:${MYSQL_PORT}
+      - 3306:3306
     volumes:
       - mysql:/var/lib/mysql
       - ./mysqldump:/mysqldump
