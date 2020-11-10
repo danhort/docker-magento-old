@@ -53,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG file to hopefully serve as an evolving example of a
   standardized open source project CHANGELOG.
 
-[Unreleased]: https://github.com/danhort/docker-magento/compare/0.5.1...HEAD
+[Unreleased]: https://github.com/danhort/docker-magento/compare/0.5.2...HEAD
+[0.5.2]: https://github.com/danhort/docker-magento/compare/0.5.1...0.5.2
 [0.5.1]: https://github.com/danhort/docker-magento/compare/0.5.0...0.5.1
 [0.5.0]: https://github.com/danhort/docker-magento/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/danhort/docker-magento/compare/0.3.0...0.4.0
