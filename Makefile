@@ -151,7 +151,7 @@ cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 ## ----------------------------------------------------------------------------
 ##
 
-magento: ## https://magento.localhost
+Magento: ## https://magento.localhost
 	@xdg-open https://magento.localhost
 
 magento-admin: ## https://magento.localhost/admin
