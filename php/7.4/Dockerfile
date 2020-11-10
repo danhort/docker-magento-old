@@ -8,7 +8,8 @@ RUN apk --update add --no-cache --virtual .php-ext-install-deps \
         libjpeg-turbo-dev \
         libjpeg-turbo \
         jpeg-dev \
-        ssmtp
+        ssmtp \
+        patch
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 

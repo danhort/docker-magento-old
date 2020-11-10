@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2020-11-10
+### Added
+- patch library ro PHP7.4 
+
 ## [0.5.1] - 2020-11-10
 ### Fixed
 - Makefile conflict error
@@ -17,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add base_static_url and base_media_url and elastic host to env.php sample
 - Add fastcgi_buffer_size to nginx
 - Added PHP 7.4
-### CHanged
+### Changed
 - Updated elasticsearch to 7.6
 ### Removed
 - Remove unused bin script
