@@ -42,8 +42,13 @@ RUN \
     apk del .build-deps
 
 ## Install Composer globally
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+RUN rm /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer self-update --1
+RUN composer config --global repos.packagist composer https://packagist.org 
+RUN composer global require "hirak/prestissimo" "mage2tv/magento-cache-clean" --no-plugins --no-suggest --optimize-autoloader --classmap-authoritative
+ENV PATH "${PATH}:/root/.composer/vendor/bin"
 
 ## Install Magerun 1
 RUN wget https://files.magerun.net/n98-magerun.phar \
