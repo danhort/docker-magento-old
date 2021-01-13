@@ -11,25 +11,25 @@
 # Docker development environment for Magento 1 and Magento 2
 
 ## Services
-* `elasticsearch`: [docker.elastic.co/elasticsearch/elasticsearch:7.6.2](https://github.com/danhort/docker-magento2/blob/master/elasticsearch/Dockerfile)
+* `elasticsearch`: [docker.elastic.co/elasticsearch/elasticsearch:7.6.2](https://github.com/danhort/docker-magento2/blob/main/elasticsearch/Dockerfile)
 * `maildev`: [djfarrelly/maildev:latest](https://hub.docker.com/r/djfarrelly/maildev/)
 * `mysql`: [mysql:5.7](https://store.docker.com/images/mysql)
-* `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/master/nginx/Dockerfile)
-* `php` : 
-    - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/5.6/Dockerfile)
-    - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.0/Dockerfile)
-    - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/blob/master/php/7.1/Dockerfile)
-    - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.2/Dockerfile)
-    - [php:7.3-fpm-alpine](https://github.com/danhort/docker-magento2/blob/master/php/7.3/Dockerfile)
-    - [adhocore/phpfpm:7.4](https://github.com/danhort/docker-magento2/blob/master/php/7.3=4/Dockerfile)
+* `nginx`: [nginx:1.15-alpine](https://github.com/danhort/docker-magento2/blob/main/nginx/Dockerfile)
+* `php` :
+    - [php:5.6-fpm-alpine](https://github.com/danhort/docker-magento2/blob/main/php/5.6/Dockerfile)
+    - [php:7.0-fpm-alpine](https://github.com/danhort/docker-magento2/blob/main/php/7.0/Dockerfile)
+    - [php:7.1-fpm-jessie](https://github.com/danhort/docker-magento2/blob/main/php/7.1/Dockerfile)
+    - [php:7.2-fpm-alpine](https://github.com/danhort/docker-magento2/blob/main/php/7.2/Dockerfile)
+    - [php:7.3-fpm-alpine](https://github.com/danhort/docker-magento2/blob/main/php/7.3/Dockerfile)
+    - [adhocore/phpfpm:7.4](https://github.com/danhort/docker-magento2/blob/main/php/7.3=4/Dockerfile)
 * `redis`: [redis:4-alpine](https://store.docker.com/images/redis)
 * `varnish`: [varnish](https://hub.docker.com/_/varnish
-* `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/master/phpmyadmin/Dockerfile)
+* `phpmyadmin`: [phpmyadmin/phpmyadmin](https://github.com/danhort/docker-magento2/blob/main/phpmyadmin/Dockerfile)
 
 ## Setup
 In your project root dir.
 ```
-wget https://raw.githubusercontent.com/danhort/docker-magento/master/bin/init.sh
+wget https://raw.githubusercontent.com/danhort/docker-magento/main/bin/init.sh
 chmod +x init.sh
 ./init.sh
 ```
