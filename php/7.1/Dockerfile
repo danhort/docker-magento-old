@@ -20,7 +20,7 @@ RUN apt-get update \
     && apt-get purge --auto-remove -y $requirementsToRemove
 
 ## Install Composer globally
-RUN rm /usr/local/bin/composer
+RUN rm -f /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer self-update --1
