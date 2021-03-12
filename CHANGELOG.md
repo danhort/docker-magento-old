@@ -5,8 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.5.8] - 2021-03-12
 ### Changed
 - Replace zcat with gunzip for macOS compatibility
+- Update db-import command to recreate database table
 ### Fixed
 - Change user in db-dump command
 
@@ -77,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG file to hopefully serve as an evolving example of a
   standardized open source project CHANGELOG.
 
-[Unreleased]: https://github.com/danhort/docker-magento/compare/0.5.7...HEAD
+[Unreleased]: https://github.com/danhort/docker-magento/compare/0.5.8...HEAD
+[0.5.8]: https://github.com/danhort/docker-magento/compare/0.5.7...0.5.8
 [0.5.7]: https://github.com/danhort/docker-magento/compare/0.5.6...0.5.7
 [0.5.6]: https://github.com/danhort/docker-magento/compare/0.5.5...0.5.6
 [0.5.5]: https://github.com/danhort/docker-magento/compare/0.5.4...0.5.5
