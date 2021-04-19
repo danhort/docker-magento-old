@@ -13,8 +13,11 @@ export PHP_VERSION := $(shell grep PHP_VERSION ${DOCKER_PATH}/docker.env | awk -
 # Extract docker image
 export DOCKER_PHP_IMAGE := $(shell grep DOCKER_PHP_IMAGE ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
-# Extract magneto version variable
+# Extract magento version variable
 export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
+
+# Extract external extension path
+export EXTERNAL_EXTENSIONS_PATH := $(shell echo ${MAKEFILE_DIRECTORY})$(shell grep EXTERNAL_EXTENSIONS_PATH ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 
 ##    _____             _               __  __                        _
@@ -141,6 +144,15 @@ flush-redis: ## Flush cache stored in Redis
 
 cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 	docker-compose exec --user root php /root/.composer/vendor/bin/cache-clean.js -d /var/www/html $(t)
+
+##
+## ----------------------------------------------------------------------------
+##   Synlink external composer extensions
+## ----------------------------------------------------------------------------
+##
+
+link-extension: ## Link external composer extension [name=<extension name>] [folder=<extension folder>]
+	ln -snf $(EXTERNAL_EXTENSIONS_PATH)/$(folder) $(MAGENTO_ROOT)/vendor/$(name)
 
 ##
 ## ----------------------------------------------------------------------------
