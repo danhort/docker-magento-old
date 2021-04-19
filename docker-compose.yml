@@ -61,6 +61,8 @@ services:
       - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
       # SSH keys
       - ~/.ssh:/root/.ssh:ro
+      # external composer extensions
+      - ../${EXTERNAL_EXTENSIONS_PATH}:/var/www/extensions
     tty: true
 
   redis:

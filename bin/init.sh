@@ -13,5 +13,11 @@ cp ops/samples/docker.env.sample ops/docker.env
 # Copy the custom nginx file to the ops directory
 cp ops/samples/custom-nginx.conf.sample ops/custom-nginx.conf
 
+# create magneto root dir
+mkdir src
+
+# create external extensions dir
+mkdir extensions
+
 # Delete self
 rm -- "$0"

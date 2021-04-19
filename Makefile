@@ -17,7 +17,7 @@ export DOCKER_PHP_IMAGE := $(shell grep DOCKER_PHP_IMAGE ${DOCKER_PATH}/docker.e
 export MAGENTO_VERSION := $(shell grep MAGENTO_VERSION ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 # Extract external extension path
-export EXTERNAL_EXTENSIONS_PATH := $(shell echo ${MAKEFILE_DIRECTORY})$(shell grep EXTERNAL_EXTENSIONS_PATH ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
+export EXTERNAL_EXTENSIONS_PATH := $(shell grep EXTERNAL_EXTENSIONS_PATH ${DOCKER_PATH}/docker.env | awk -F '=' '{print $$NF}')
 
 
 ##    _____             _               __  __                        _
@@ -152,7 +152,7 @@ cache-watch: ## Run mage2tv cache-clean [t="<task>"]
 ##
 
 link-extension: ## Link external composer extension [name=<extension name>] [folder=<extension folder>]
-	ln -snf $(EXTERNAL_EXTENSIONS_PATH)/$(folder) $(MAGENTO_ROOT)/vendor/$(name)
+	rm -rf src/vendor/$(name) && ln -snf ../../../$(EXTERNAL_EXTENSIONS_PATH)/$(folder) src/vendor/$(name)
 
 ##
 ## ----------------------------------------------------------------------------
