@@ -100,9 +100,11 @@ file := backup
 db-dump: ## dump the mysql database [file=<file name>], dump specific tables [tables="<table1 table2 ...>"]
 	docker-compose exec -T -u root mysql mysqldump -umagento -pmagento magento $(tables) | $(REMOVE_DEFINER) | gzip -c > $(DOCKER_PATH)/mysqldump/$(file).sql.gz
 
+# The sed command replaces utf8mb4_0900_ai_ci to prevent errors
+REPLACE_COLLATION := sed -e 's/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g'
 db-import: ## import to mysql database [file=<file name>]
 	docker-compose exec --user root mysql sh -c "mysql -umagento -pmagento magento -e'DROP DATABASE magento; CREATE DATABASE magento;'" \
-	&& gunzip -c $(DOCKER_PATH)/mysqldump/$(file) | $(REMOVE_DEFINER) | docker-compose exec -T -u root mysql mysql -umagento -pmagento magento
+	&& gunzip -c $(DOCKER_PATH)/mysqldump/$(file) | $(REMOVE_DEFINER) | $(REPLACE_COLLATION) | docker-compose exec -T -u root mysql mysql -umagento -pmagento magento
 
 db: ## log in to DB container
 	docker-compose exec --user root mysql sh -c "mysql -umagento -pmagento magento"

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2021-05-27
+### Added
+- Ioncube to PHP 4
+### Fixed
+- Added sed command to replace utf8mb4_0900_ai_ci to prevent errors in db import
+
 ## [0.7.1] - 2021-04-19
 ### Added
 - Fixed symlinking external vendor module
@@ -94,7 +100,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This CHANGELOG file to hopefully serve as an evolving example of a
   standardized open source project CHANGELOG.
 
-[Unreleased]: https://github.com/danhort/docker-magento/compare/0.7.1...HEAD
+[Unreleased]: https://github.com/danhort/docker-magento/compare/0.8.0...HEAD
+[0.8.0]: https://github.com/danhort/docker-magento/compare/0.7.1...0.8.0
 [0.7.1]: https://github.com/danhort/docker-magento/compare/0.7.0...0.7.1
 [0.7.0]: https://github.com/danhort/docker-magento/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/danhort/docker-magento/compare/0.5.8...0.6.0
